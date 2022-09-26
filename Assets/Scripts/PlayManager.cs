@@ -51,9 +51,9 @@ public class PlayManager : MonoBehaviour
                 Debug.Log(player.GetComponent<Transform>().name);
                 playersInGame.Add(player);
             }
-            
         }
 
+        // Set the current turn to that of the first player
         SetPlayerTurn(1);
     }
 
