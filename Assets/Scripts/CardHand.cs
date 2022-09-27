@@ -22,15 +22,13 @@ public class CardHand : MonoBehaviour {
 
 	void LayoutCards() {
 		int currentCard = 0;
-		float offset = 1f;
+		float offset = 1.5f;
 		foreach (Pickup card in cards) {
 			currentCard++;
 
-			Debug.Log(card);
+			float rotation = 180 * ((float)currentCard / (float)cards.Length) + transform.eulerAngles.y;
 
-			float rotation = 180 * (currentCard / card.transform.localScale.x) + player.transform.eulerAngles.y;
-
-			Vector3 offsetVector = new Vector3(Mathf.Sin(rotation) * offset, 0, Mathf.Cos(rotation) * offset);
+			Vector3 offsetVector = new Vector3(Mathf.Sin(Mathf.Deg2Rad * rotation) * offset, 0, Mathf.Cos(Mathf.Deg2Rad * rotation) * offset);
 			
 			card.transform.position = player.transform.position + offsetVector;
 
