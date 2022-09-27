@@ -48,7 +48,7 @@ public class PlayManager : MonoBehaviour
         // Initialize players in game list; adds each player component to the list
         foreach (Player player in playersContainer.GetComponentsInChildren<Player>()) {
             if (player != null) {
-                Debug.Log(player.GetComponent<Transform>().name);
+                //Debug.Log(player.GetComponent<Transform>().name);
                 playersInGame.Add(player);
             }
         }

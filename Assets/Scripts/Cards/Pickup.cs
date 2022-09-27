@@ -11,10 +11,7 @@ public class Pickup : MonoBehaviour {
 	int damage;
 	bool keep;
 
-	private void Start() {
-		//myGameObject = GetComponent<GameObject>();
-		//myCamera = myGameObject.GetComponent<Camera>();
-
-		transform.LookAt( myCamera.transform.position );
+	public void Look() {
+		transform.LookAt(myCamera.transform.position);
 	}
 }
