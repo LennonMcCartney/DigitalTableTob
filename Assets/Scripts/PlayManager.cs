@@ -9,7 +9,7 @@ public class PlayManager : MonoBehaviour {
 
 	[SerializeField] private Pickup newCardPrefab;
 
-	private int turnDirection = 1;
+	public int turnDirection = 1;
 	private int turnOfPlayer = 0;
 
 	// Happens upon the previous player selecting "End Turn"
@@ -35,7 +35,10 @@ public class PlayManager : MonoBehaviour {
 	*/
 
 	void NextTurn() {
-		turnOfPlayer = (turnOfPlayer + 1) % 4;
+		turnOfPlayer = (turnOfPlayer + turnDirection) % 4;
+		if ( turnDirection < 0 && turnOfPlayer < 0 ) {
+			turnOfPlayer = 3;
+		}
 
 		Debug.Log( playersInGame[turnOfPlayer].inGame);
 
@@ -60,13 +63,18 @@ public class PlayManager : MonoBehaviour {
 		return turnOfPlayer + 1;
 	}
 
+	public Player GetCurrentPlayer() {
+		return playersInGame[turnOfPlayer];
+	}
+
 	private void OnMouseDown() {
 		Pickup newCard = Instantiate( newCardPrefab, new Vector3(0,0,0), Quaternion.identity );
 		newCard.transform.parent = playersInGame[turnOfPlayer].transform;
+		newCard.player = playersInGame[turnOfPlayer];
 		playersInGame[turnOfPlayer].cards.Add( newCard ); ;
 		playersInGame[turnOfPlayer].LayoutCards();
 
-		if ( newCard.cardType == CardType.Damage ) {
+		if ( newCard.cardType == CardType.FbiLizard ) {
 			playersInGame[turnOfPlayer].DamagePlayer(1);
 			
 		}
