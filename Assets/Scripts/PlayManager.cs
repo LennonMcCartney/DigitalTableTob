@@ -51,10 +51,12 @@ public class PlayManager : MonoBehaviour {
 		playersInGame[turnOfPlayer].cards.Add( newCard ); ;
 		playersInGame[turnOfPlayer].LayoutCards();
 
+		if ( newCard.cardType == CardType.Damage ) {
+			playersInGame[turnOfPlayer].lives--;
+		}
 		NextTurn();
 	}
 
-	// Start is called before the first frame update
 	void Start() {
 		playersInGame = new List<Player>();
 		int playerIndex = 0;
@@ -70,10 +72,5 @@ public class PlayManager : MonoBehaviour {
 
 		// Set the current turn to that of the first player
 		SetPlayerTurn(0);
-	}
-
-	// Update is called once per frame
-	void Update() {
-
 	}
 }

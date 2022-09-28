@@ -17,6 +17,8 @@ public class Player : MonoBehaviour {
 	}
 
 	public void LayoutCards() {
+		turnsToSkip = -1;
+
 		int currentCard = 0;
 		float offset = 1.5f;
 		foreach (Pickup card in cards) {
