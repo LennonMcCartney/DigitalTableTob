@@ -6,15 +6,35 @@ public class Player : MonoBehaviour
 {
     public int turnsToSkip = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public List<Pickup> cards;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public Player player;
+
+	private void Start() {
+		cards = new List<Pickup>( FindObjectsOfType<Pickup>() );
+
+		LayoutCards();
+	}
+
+	private void Update() {
+		//foreach (Pickup pickup in cards) {
+		//cards.Add(Instantiate(pickup, transform.position, Quaternion.identity));
+		//}
+	}
+
+	void LayoutCards() {
+		int currentCard = 0;
+		float offset = 1.5f;
+		foreach (Pickup card in cards) {
+			currentCard++;
+
+			float rotation = 180 * ( (float)currentCard / (float)cards.Count ) + transform.eulerAngles.y;
+
+			Vector3 offsetVector = new Vector3(Mathf.Sin(Mathf.Deg2Rad * rotation) * offset, 0, Mathf.Cos(Mathf.Deg2Rad * rotation) * offset);
+
+			card.transform.position = player.transform.position + offsetVector;
+
+			card.Look();
+		}
+	}
 }
