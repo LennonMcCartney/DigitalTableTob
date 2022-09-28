@@ -18,16 +18,17 @@ public class PlayManager : MonoBehaviour {
 		int advanced = 0; // How far ahead next player is
 		bool foundPlayer = false; // If we have found them yet
 		while (advanced < 100 && !foundPlayer) {
-			advanced++;
-			int turnsToSkip = playersInGame[turnOfPlayer - 1 + advanced].turnsToSkip;
+			advanced = advanced + 1;
+			int turnsToSkip = playersInGame[(turnOfPlayer + advanced - 1) % playersInGame.Count].turnsToSkip;
 			if (turnsToSkip == 0) {
 				foundPlayer = true;
 			} else {
-				turnsToSkip--;
+				Debug.Log("Decreased");
+				playersInGame[(turnOfPlayer + advanced - 1) % playersInGame.Count].turnsToSkip --;
 			}
 		}
 
-		SetPlayerTurn((turnOfPlayer + turnDirection) % playersInGame.Count);
+		SetPlayerTurn((turnOfPlayer + turnDirection * advanced) % playersInGame.Count);
 	}
 
 	void SetPlayerTurn(int nextPlayer) {
@@ -36,7 +37,7 @@ public class PlayManager : MonoBehaviour {
 		// Player draws cards
 
 		// Enable current player to play
-		turnOfPlayer = nextPlayer % 4;
+		turnOfPlayer = nextPlayer;
 		//Debug.Log("It is now Player " + turnOfPlayer.ToString() + "'s turn");
 	}
 
