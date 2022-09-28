@@ -6,6 +6,8 @@ public class Player : MonoBehaviour {
 
 	public bool inGame;
 
+	public GameObject currentCamera;
+
 	public int lives = 4;
 
 	public int turnsToSkip = 0;
@@ -17,6 +19,8 @@ public class Player : MonoBehaviour {
 	private void Start() {
 		cards = new List<Pickup>();
 		inGame = true;
+
+		transform.GetComponentInChildren<Transform>().LookAt(currentCamera.transform.position);
 	}
 
 	public void LayoutCards() {
@@ -42,7 +46,7 @@ public class Player : MonoBehaviour {
 
 		if (lives <= 0) {
 			inGame = false;
-			GetComponentInChildren<MeshRenderer>().enabled = false;
+			GetComponentInChildren<SpriteRenderer>().enabled = false;
 		}
 	}
 
