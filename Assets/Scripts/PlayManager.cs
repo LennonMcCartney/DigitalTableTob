@@ -10,25 +10,40 @@ public class PlayManager : MonoBehaviour {
 	[SerializeField] private Pickup newCardPrefab;
 
 	private int turnDirection = 1;
-	private int turnOfPlayer;
+	private int turnOfPlayer = 0;
 
 	// Happens upon the previous player selecting "End Turn"
+	/*
 	void NextTurn() {
 		// Needs to find the next unskipped player
 		int advanced = 0; // How far ahead next player is
 		bool foundPlayer = false; // If we have found them yet
 		while (advanced < 100 && !foundPlayer) {
 			advanced = advanced + 1;
-			int turnsToSkip = playersInGame[(turnOfPlayer + advanced - 1) % playersInGame.Count].turnsToSkip;
+			int turnsToSkip = playersInGame[(turnOfPlayer + advanced) % playersInGame.Count].turnsToSkip;
 			if (turnsToSkip == 0) {
+				Debug.Log("= 0");
 				foundPlayer = true;
 			} else {
-				Debug.Log("Decreased");
-				playersInGame[(turnOfPlayer + advanced - 1) % playersInGame.Count].turnsToSkip --;
+				Debug.Log("!= 0");
+				playersInGame[(turnOfPlayer + advanced) % playersInGame.Count].turnsToSkip --;
 			}
 		}
 
 		SetPlayerTurn((turnOfPlayer + turnDirection * advanced) % playersInGame.Count);
+	}
+	*/
+
+	void NextTurn() {
+		turnOfPlayer = (turnOfPlayer + 1) % 4;
+
+		Debug.Log( playersInGame[turnOfPlayer].inGame);
+
+		if ( playersInGame[turnOfPlayer].inGame ) {
+			SetPlayerTurn(turnOfPlayer);
+		} else {
+			NextTurn();
+		}
 	}
 
 	void SetPlayerTurn(int nextPlayer) {
@@ -52,7 +67,8 @@ public class PlayManager : MonoBehaviour {
 		playersInGame[turnOfPlayer].LayoutCards();
 
 		if ( newCard.cardType == CardType.Damage ) {
-			playersInGame[turnOfPlayer].lives--;
+			playersInGame[turnOfPlayer].DamagePlayer(1);
+			
 		}
 		NextTurn();
 	}

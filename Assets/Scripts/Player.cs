@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+	public bool inGame;
+
 	public int lives = 4;
 
 	public int turnsToSkip = 0;
@@ -14,6 +16,7 @@ public class Player : MonoBehaviour {
 
 	private void Start() {
 		cards = new List<Pickup>();
+		inGame = true;
 	}
 
 	public void LayoutCards() {
@@ -31,6 +34,15 @@ public class Player : MonoBehaviour {
 			card.transform.position = transform.position + offsetVector;
 
 			card.Look();
+		}
+	}
+
+	public void DamagePlayer(int damage) {
+		lives -= damage;
+
+		if (lives <= 0) {
+			inGame = false;
+			GetComponentInChildren<MeshRenderer>().enabled = false;
 		}
 	}
 
