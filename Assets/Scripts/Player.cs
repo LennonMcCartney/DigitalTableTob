@@ -3,24 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-	int lives = 4;
+
+	public int lives = 4;
 
 	public int turnsToSkip = 0;
 
 	public List<Pickup> cards;
 
-	//public Player player;
+	public int index;
 
 	private void Start() {
-		cards = new List<Pickup>(FindObjectsOfType<Pickup>());
-
-		LayoutCards();
-	}
-
-	private void Update() {
-		//foreach (Pickup pickup in cards) {
-		//cards.Add(Instantiate(pickup, transform.position, Quaternion.identity));
-		//}
+		cards = new List<Pickup>();
 	}
 
 	public void LayoutCards() {
@@ -32,10 +25,14 @@ public class Player : MonoBehaviour {
 			float rotation = 180 * ((float)currentCard / (float)cards.Count) + transform.eulerAngles.y;
 
 			Vector3 offsetVector = new Vector3(Mathf.Sin(Mathf.Deg2Rad * rotation) * offset, 0, Mathf.Cos(Mathf.Deg2Rad * rotation) * offset);
-
+			
 			card.transform.position = transform.position + offsetVector;
 
 			card.Look();
 		}
+	}
+
+	public int GetIndex() {
+		return index + 1;
 	}
 }

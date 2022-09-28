@@ -56,12 +56,14 @@ public class PlayManager : MonoBehaviour {
 	// Start is called before the first frame update
 	void Start() {
 		playersInGame = new List<Player>();
-
+		int playerIndex = 0;
 		// Initialize players in game list; adds each player component to the list
 		foreach (Player player in playersContainer.GetComponentsInChildren<Player>()) {
 			if (player != null) {
 				//Debug.Log(player.GetComponent<Transform>().name);
 				playersInGame.Add(player);
+				playersInGame[playerIndex].index = playerIndex;
+				playerIndex++;
 			}
 		}
 

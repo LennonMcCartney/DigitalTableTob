@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8978731867658023305}
   - component: {fileID: 6818648936013460939}
+  - component: {fileID: 8403089544767180762}
   m_Layer: 0
   m_Name: Pickup
   m_TagString: Untagged
@@ -45,8 +46,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f43c18795021244bbc3364e7c85589f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myGameObject: {fileID: 5751248453179015454}
   myCamera: {fileID: 8661254403517748529, guid: 305fa4f651f51a6488f0079b95279ff0, type: 3}
+--- !u!65 &8403089544767180762
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5751248453179015454}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6, y: 0.76, z: 0.03}
+  m_Center: {x: 0, y: 0.37, z: 0}
 --- !u!1001 &5131379587155727116
 PrefabInstance:
   m_ObjectHideFlags: 0
