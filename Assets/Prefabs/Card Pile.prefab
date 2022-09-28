@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playersContainer: {fileID: 0}
+  newCardPrefab: {fileID: 6818648936013460939, guid: dcce5219d2f4e0b4693ef84ab2694790, type: 3}
 --- !u!1001 &4743940390497214473
 PrefabInstance:
   m_ObjectHideFlags: 0

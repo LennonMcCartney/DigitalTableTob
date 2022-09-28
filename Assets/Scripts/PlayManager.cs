@@ -7,6 +7,8 @@ public class PlayManager : MonoBehaviour {
 
 	[SerializeField] private GameObject playersContainer;
 
+	[SerializeField] private Pickup newCardPrefab;
+
 	private int turnDirection = 1;
 	private int turnOfPlayer;
 
@@ -35,7 +37,7 @@ public class PlayManager : MonoBehaviour {
 
 		// Enable current player to play
 		turnOfPlayer = nextPlayer % 4;
-		Debug.Log("It is now Player " + turnOfPlayer.ToString() + "'s turn");
+		//Debug.Log("It is now Player " + turnOfPlayer.ToString() + "'s turn");
 	}
 
 	public int GetPlayerTurn() {
@@ -43,7 +45,10 @@ public class PlayManager : MonoBehaviour {
 	}
 
 	private void OnMouseDown() {
-		//playersInGame[turnOfPlayer].cards.Add( new Pickup() ); ;
+		Pickup newCard = Instantiate( newCardPrefab, new Vector3(0,0,0), Quaternion.identity );
+		newCard.transform.parent = playersInGame[turnOfPlayer].transform;
+		playersInGame[turnOfPlayer].cards.Add( newCard ); ;
+		playersInGame[turnOfPlayer].LayoutCards();
 
 		SetPlayerTurn( turnOfPlayer + 1 );
 	}

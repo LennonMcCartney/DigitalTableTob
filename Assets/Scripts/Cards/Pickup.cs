@@ -14,4 +14,8 @@ public class Pickup : MonoBehaviour {
 	public void Look() {
 		transform.LookAt(myCamera.transform.position);
 	}
+
+	private void OnMouseDown() {
+		Debug.Log("Clicked");
+	}
 }

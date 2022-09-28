@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 
 	public List<Pickup> cards;
 
-	public Player player;
+	//public Player player;
 
 	private void Start() {
 		cards = new List<Pickup>( FindObjectsOfType<Pickup>() );
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 		//}
 	}
 
-	void LayoutCards() {
+	public void LayoutCards() {
 		int currentCard = 0;
 		float offset = 1.5f;
 		foreach (Pickup card in cards) {
@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
 
 			Vector3 offsetVector = new Vector3(Mathf.Sin(Mathf.Deg2Rad * rotation) * offset, 0, Mathf.Cos(Mathf.Deg2Rad * rotation) * offset);
 
-			card.transform.position = player.transform.position + offsetVector;
+			card.transform.position = transform.position + offsetVector;
 
 			card.Look();
 		}
