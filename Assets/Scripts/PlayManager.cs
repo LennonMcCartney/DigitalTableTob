@@ -50,7 +50,7 @@ public class PlayManager : MonoBehaviour {
 		playersInGame[turnOfPlayer].cards.Add( newCard ); ;
 		playersInGame[turnOfPlayer].LayoutCards();
 
-		SetPlayerTurn( turnOfPlayer + 1 );
+		NextTurn();
 	}
 
 	// Start is called before the first frame update
