@@ -11,6 +11,10 @@ public class Pickup : MonoBehaviour {
 	int damage;
 	bool keep;
 
+	private void Start() {
+		
+	}
+
 	public void Look() {
 		transform.LookAt(myCamera.transform.position);
 	}
@@ -18,4 +22,10 @@ public class Pickup : MonoBehaviour {
 	private void OnMouseDown() {
 		Debug.Log("Clicked");
 	}
+}
+
+enum CardType {
+	Damage,
+	Keep,
+	TurnOrder,
 }
