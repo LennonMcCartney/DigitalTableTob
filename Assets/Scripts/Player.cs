@@ -46,7 +46,13 @@ public class Player : MonoBehaviour {
 
 		if (lives <= 0) {
 			inGame = false;
+
 			GetComponentInChildren<SpriteRenderer>().enabled = false;
+
+			PlayManager.playersAlive--;
+			if (PlayManager.playersAlive <= 1) {
+				TurnText.victor = true;
+            }
 		}
 	}
 

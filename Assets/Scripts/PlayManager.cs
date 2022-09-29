@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayManager : MonoBehaviour {
 	public static List<Player> playersInGame;
+	public static int playersAlive = 4;
 
 	[SerializeField] private GameObject playersContainer;
 
@@ -68,17 +69,19 @@ public class PlayManager : MonoBehaviour {
 	}
 
 	private void OnMouseDown() {
-		Pickup newCard = Instantiate( newCardPrefab, new Vector3(0,0,0), Quaternion.identity );
-		newCard.transform.parent = playersInGame[turnOfPlayer].transform;
-		newCard.player = playersInGame[turnOfPlayer];
-		playersInGame[turnOfPlayer].cards.Add( newCard ); ;
-		playersInGame[turnOfPlayer].LayoutCards();
+		if (playersAlive > 1) {
+			Pickup newCard = Instantiate(newCardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+			newCard.transform.parent = playersInGame[turnOfPlayer].transform;
+			newCard.player = playersInGame[turnOfPlayer];
+			playersInGame[turnOfPlayer].cards.Add(newCard); ;
+			playersInGame[turnOfPlayer].LayoutCards();
 
-		if ( newCard.cardType == CardType.FbiLizard ) {
-			playersInGame[turnOfPlayer].DamagePlayer(1);
-			
+			if (newCard.cardType == CardType.FbiLizard) {
+				playersInGame[turnOfPlayer].DamagePlayer(1);
+
+			}
+			NextTurn();
 		}
-		NextTurn();
 	}
 
 	void Start() {

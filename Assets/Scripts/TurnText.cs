@@ -8,11 +8,18 @@ public class TurnText : MonoBehaviour {
 
 	[SerializeField] PlayManager playManager;
 
+	public static bool victor = false;
+
 	private void Start() {
 		textMesh = GetComponent<TextMeshProUGUI>();
 	}
 
 	private void Update() {
-		textMesh.text = "Player " + playManager.GetPlayerTurn() + "'s turn";
+		if (victor == false) {
+			textMesh.text = "Player " + playManager.GetPlayerTurn() + "'s turn";
+		}
+		else {
+			textMesh.text = "#1 Victory Royale";
+		}
 	}
 }
